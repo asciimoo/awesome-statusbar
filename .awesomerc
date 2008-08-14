@@ -1,0 +1,539 @@
+screen 0
+{
+   general
+   {
+       opacity_focused = 1.00
+       opacity_unfocused = 0.60
+       snap = 8
+       resize_hints = true
+       new_become_master = true
+       new_get_focus = true
+   }
+   styles
+   {
+       normal
+       {
+           font = "monospace 8"
+           fg = "#6699cc"
+           bg = "#000000"
+           border = "#000000"
+       }
+       focus
+       {
+           fg = "#00FFFF"
+           bg = "#000000"
+           border = "#000000"
+       }
+       urgent
+       {
+           fg = "#000000"
+           bg = "#ff4500"
+       }
+   }
+   tags
+   {
+       tag 1 { }
+       tag 2 { }
+       tag 3 { }
+       tag 4 { }
+       tag 5 { }
+       tag 6 { }
+       tag 7 { }
+       tag 8 { layout = "floating" }
+   }
+   layouts
+   {
+       layout tile { image = "/usr/share/awesome/icons/layouts/tilew.png" }
+       layout tileleft { image = "/usr/share/awesome/icons/layouts/tileleftw.png" }
+       layout tilebottom { image = "/usr/share/awesome/icons/layouts/tilebottomw.png" }
+       layout tiletop { image = "/usr/share/awesome/icons/layouts/tiletopw.png" }
+       layout max { image = "/usr/share/awesome/icons/layouts/maxw.png" }
+       layout spiral { image = "/usr/share/awesome/icons/layouts/spiralw.png" }
+       layout dwindle { image = "/usr/share/awesome/icons/layouts/dwindlew.png" }
+       layout floating { image = "/usr/share/awesome/icons/layouts/floatingw.png" }
+   }
+   statusbar top
+   {
+      position = "top"
+      height = "16"
+      
+
+      taglist mytaglist
+      {
+         mouse
+         {
+             button = "1"
+             command = "tag_view"
+         }
+         mouse
+         {
+             button = "1"
+             modkey = {"Mod4"}
+             command = "client_tag"
+         }
+         mouse
+         {
+             button = "3"
+             command = "tag_toggleview"
+         }
+         mouse
+         {
+             button = "3"
+             modkey = {"Mod4"}
+             command = "client_toggletag"
+         }
+         mouse
+         {
+             button = "4"
+             command = "tag_viewnext"
+         }
+         mouse
+         {
+             button = "5"
+             command = "tag_viewprev"
+         }
+      }
+      layoutinfo top
+      {
+         mouse
+         {
+             button = "1"
+             command = "tag_setlayout"
+             arg = "+1"
+         }
+         mouse
+         {
+             button = "4"
+             command = "tag_setlayout"
+             arg = "+1"
+         }
+         mouse
+         {
+             button = "3"
+             command = "tag_setlayout"
+             arg = "-1"
+         }
+         mouse
+         {
+             button = "5"
+             command = "tag_setlayout"
+             arg = "-1"
+         }
+      }
+      tasklist top
+      {
+         mouse
+         {
+             button = "4"
+             command = "client_focusnext"
+         }
+         mouse
+         {
+             button = "5"
+             command = "client_focusprev"
+         }
+         mouse
+         {
+             modkey = {"Mod4"}
+             button = "4"
+             command = "client_swapnext"
+         }
+         mouse
+         {
+             modkey = {"Mod4"}
+             button = "5"
+             command = "client_swapprev"
+         }
+      }
+      textbox net_text { 
+         text = "[D/U"
+         width = 32
+         style {
+             fg = "#888888"
+         }
+      }
+      graph down_graph {
+          data "down_graph" {
+              max = 100000
+              fg = "#004488"
+          }
+          grow = right
+          width = 60
+          height = 1
+      }
+      emptybox "space1" { width = 2 }
+      graph up_graph {
+          data "down_graph" {
+              max = 60000
+              fg = "#004488"
+          }
+          grow = right
+          width = 60
+          height = 1
+      }
+      textbox net_usage { 
+          text = " - " 
+          width = 100
+          align = "right"
+          style {
+              fg = "#888888"
+          }
+      }
+      emptybox "space2" { width = 10 }
+      textbox cpu_text { 
+         text = "[cpu"
+         width = 32
+         align = "right"
+         style {
+             fg = "#888888"
+         }
+      }
+      graph cpu_graph {
+          data "cpu_graph" {
+              #50 - CPU0+CPU1
+              #max = 50
+              fg = "#888888"
+          }
+          grow = right
+          width = 60
+          height = 1
+      }
+      emptybox "cpu_space" { width = 4 }
+      textbox cpu_usage { 
+          text = " - " 
+          width = 50
+          style {
+              fg = "#888888"
+          }
+      }
+      emptybox "space3" { width = 10 }
+      textbox mem_usage { text = " - " }
+      emptybox "space5" { width = 10 }
+      #textbox eth0 { text = "eth0" }
+      #emptybox "space7" { width = 10 }
+      #textbox eth1 { text = "eth1" }
+      #emptybox "space9" { width = 10 }
+      textbox clock { text = " - " }
+      emptybox "space10" { width = 10 }
+      textbox log { 
+          text = " - " 
+          style{ 
+              bg = "#aaff24" 
+              fg = "#000000" 
+              font = "sans bold 8"
+          }
+          mouse
+          {
+              button = "1"
+              command = "spawn"
+              arg = "exec Eterm -t log"
+          }
+      }
+      emptybox "spaceEnd" { width = 4 }
+   }
+}
+
+
+rules {
+    rule {name = "firefox" float = true}
+    rule {name = "MPlayer" float = true}
+    rule {name = "gkrellm" tags = "2" float = true}
+    rule {name = "Gimp" tags = "4" float = true}
+    rule {name = "gthumb" float = true}
+    rule {name = "feh" float = true}
+    rule {name = "Acroread" float = true}
+    rule {name = "kvpnc" float = true tags = "7"}
+    rule {name = "amarok" tags = "3" float = true}
+    rule {name = "skype" tags = "5"}
+    rule {name = "gmrun" float = true}
+    rule {name = "mc" float = true}
+    rule {name = "conky" float = true}
+#rule {name = "urxvt" float = true tags = "1:terminal"}
+
+}
+
+
+mouse
+{
+   root
+   {
+       button = "3"
+       command = "spawn"
+       arg = "exec urxvt"
+   }
+   root
+   {
+       button = "4"
+       command = "tag_viewnext"
+   }
+   root
+   {
+       button = "5"
+       command = "tag_viewprev"
+   }
+   client
+   {
+       modkey = {"Mod4"}
+       button = "1"
+       command = "client_movemouse"
+   }
+   client
+   {
+       modkey = {"Mod4"}
+       button = "2"
+       command = "client_zoom"
+   }
+   client
+   {
+       modkey = {"Mod4"}
+       button = "3"
+       command = "client_resizemouse"
+   }
+   titlebar
+   {
+       button = "1"
+       command = "client_movemouse"
+   }
+   titlebar
+   {
+       button = "3"
+       command = "client_resizemouse"
+   }
+}
+
+keys
+{
+   key { modkey = { } key = "Insert" command = "spawn" arg = "exec ~/.awesome/keymap.sh" }
+   key { modkey = { } key = "F8" command = "spawn" arg = "exec xset dpms force off" }
+   key { modkey = { } key = "F9" command = "spawn" arg = "exec /home/wipeover/bin/screensaver" }
+   key { modkey = {"Mod4", "Control"} key = "f" command = "spawn" arg = "exec /usr/bin/iceweasel" }
+   key { modkey = {"Mod4", "Control"} key = "s" command = "spawn" arg = "exec /usr/bin/skype" }
+   key { modkey = {"Mod4"} key = "i" command = "spawn" arg = "exec Eterm -t log" }
+   key { modkey = {"Mod4"} key = "u" command = "spawn" arg = "exec urxvt" }
+   key { modkey = {"Mod4"} key = "a" command = "spawn" arg = "exec amarok" }
+   key { modkey = {"Mod4"} key = "g" command = "spawn" arg = "exec gkrellm" }
+   key { modkey = {"Mod4"} key = "c" command = "spawn" arg = "exec gmrun" }
+   key { modkey = {"Mod4"} key = "n" command = "tag_viewprev" }
+   key { modkey = {"Mod4"} key = "m" command = "tag_viewnext" }
+   key { modkey = {"Mod4"} key = "f" command = "client_togglemax" }
+   key { modkey = {"Mod4", "Shift"} key = "m"            command = "client_toggleverticalmax" }
+   key { modkey = {"Mod4", "Control"} key = "m"          command = "client_togglehorizontalmax" }
+   key { modkey = {"Mod4", "Shift"} key = "f"                     command = "client_togglefloating" }
+   key { modkey = {"Mod4", "Shift"} key = "s"                     command = "client_togglescratch" }
+   key 
+   {
+       modkey = {"Mod4"}
+       key = "F2"
+       command = "spawn"
+       arg = "find /usr/bin -type f -executable ! -empty | awesome-menu -e 'exec ' Execute:"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "F3"
+       command = "spawn"
+       arg = "cut -d' ' -f1 ~/.ssh/known_hosts | cut -d, -f1 | awesome-menu -e 'x-terminal-emulator -e ssh ' 'ssh to:'"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "space"
+       command = "tag_setlayout"
+       arg = "+1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "space"
+       command = "tag_setlayout"
+       arg = "-1"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "b"
+       command = "statusbar_toggle"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "k"
+       command = "client_focusnext"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "j"
+       command = "client_focusprev"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "Tab"
+       command = "focus_history"
+       arg = "-1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "k"
+       command = "client_swapnext"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "j"
+       command = "client_swapprev"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "k"
+       command = "screen_focus"
+       arg = "+1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "j"
+       command = "screen_focus"
+       arg = "-1"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "h"
+       command = "tag_setmwfact"
+       arg = "-0.05"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "l"
+       command = "tag_setmwfact"
+       arg = "+0.05"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "h"
+       command = "tag_setnmaster"
+       arg = "+1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "l"
+       command = "tag_setnmaster"
+       arg = "-1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "h"
+       command = "tag_setncol"
+       arg = "+1"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "l"
+       command = "tag_setncol"
+       arg = "-1"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "Escape"
+       command = "tag_prev_selected"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "Return"
+       command = "client_zoom"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "space"
+       command = "client_togglefloating"
+   }
+   key
+   {
+       modkey = {"Mod4"}
+       key = "s"
+       command = "client_togglescratch"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "s"
+       command = "client_setscratch"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "x"
+       command = "client_kill"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "q"
+       command = "quit"
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "r"
+       command = "restart"
+   }
+   key
+   {
+      modkey = {"Mod4"}
+      key = "0"
+      command = "tag_view"
+   }
+   keylist
+   {
+       modkey = {"Mod4"}
+       command = "tag_view"
+       keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+       arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+   }
+   key
+   {
+       modkey = {"Mod4", "Control"}
+       key = "0"
+       command = "tag_toggleview"
+   }
+   keylist
+   {
+       modkey = {"Mod4", "Control"}
+       command = "tag_toggleview"
+       keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+       arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+   }
+
+   key
+   {
+       modkey = {"Mod4", "Shift"}
+       key = "0"
+       command = "client_tag"
+   }
+   key
+   {
+       modkey = {"Mod4", "Shift", "Control"}
+       key = "0"
+       command = "client_toggletag"
+   }
+   keylist
+   {
+       modkey = {"Mod4", "Shift", "Control"}
+       command = "client_toggletag"
+       keylist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+       arglist = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
+   }
+}
+# vim: filetype=conf
